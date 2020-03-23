@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var dettagliRouter = require('./routes/dettagli');
 var addUnitRouter = require('./routes/addUnit');
 var deleteRouter = require('./routes/delete');
+var updateRouter = require('./routes/update');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use('/', indexRouter);
 app.use('/dettagli', dettagliRouter);
 app.use('/addUnit', addUnitRouter);
 app.use('/delete', deleteRouter);
+app.use('/update', updateRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

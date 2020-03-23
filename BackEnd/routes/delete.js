@@ -36,12 +36,9 @@ let executeQuery = function (res, query, next) {
   });
 }
 
-function renderPug(res, recordset)
+function renderPug(res)
 {
-    res.render('dettagli', {
-          title: `Dettagli di ${re.Unit}:`,
-          re: re,
-    });
+    res.redirect('/');
 }
 
 module.exports = router;

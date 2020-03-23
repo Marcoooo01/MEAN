@@ -10,20 +10,19 @@ const config = {
 }
 
 router.get('/', function(req, res, next){
-    res.render('addUnit', {
-        title: 'Aggiungi una unità.',
+    res.render('update', {
+        title: 'Aggiorna una unità.',
     })
 })
 
-router.post('/add', function (req, res, next) { 
+router.post('/up', function (req, res, next) { 
   let unit = req.body;
-  if (!unit.Unit || !unit.Cost || !unit.Hit_Speed || !unit.Speed || !unit.Deploy_Time || !unit.Range || !unit.Target || !unit.Count  || !unit.Transport || !unit.Type || !unit.Rarity) {  //Qui dovremmo testare tutti i campi della richiesta
+  if (!unit.Unit || !unit.Attributo || !unit.Valore ) {  //Qui dovremmo testare tutti i campi della richiesta
     res.status(500).json({success: false, message:'Error while connecting database', error:err});
     return;
   }
-  let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes]
-                     VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}','${unit.Speed}','${unit.Deploy_Time}','${unit.Range}','${unit.Target}','${unit.Count}','${unit.Transport}','${unit.Type}','${unit.Rarity}')`;
-  executeQuery(res, sqlInsert, next, unit);
+  let sqlUpdate = `UPDATE dbo.[cr-unit-attributes] SET ${unit.Attributo} = '${unit.Valore}' WHERE Unit = '${unit.Unit}'`
+  executeQuery(res, sqlUpdate, next, unit);
 });
 
 let executeQuery = function (res, query, next, unit) {
@@ -41,19 +40,15 @@ let executeQuery = function (res, query, next, unit) {
         sql.close();
         return;
       }
-      renderPug(res, unit);
+      renderPug(res);
       return;
     });
   });
 }
 
-function renderPug(res, unit)
+function renderPug(res)
 {
-    let re = unit
-    res.render('dettagli', {
-          title: `Unità aggiunta: ${re.Unit}`,
-          re: re,
-    });
+    res.redirect('/');
 }
 
 module.exports = router;
