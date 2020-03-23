@@ -9,6 +9,7 @@ var dettagliRouter = require('./routes/dettagli');
 var addUnitRouter = require('./routes/addUnit');
 var deleteRouter = require('./routes/delete');
 var updateRouter = require('./routes/update');
+var apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use('/dettagli', dettagliRouter);
 app.use('/addUnit', addUnitRouter);
 app.use('/delete', deleteRouter);
 app.use('/update', updateRouter);
+app.use('/api', apiRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

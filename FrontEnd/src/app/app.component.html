@@ -1,0 +1,9 @@
+<button (click)="getUnitList()">
+  get unit list
+</button>
+
+<div *ngFor="let unit of data">
+  <h1>{{unit.Unit}} </h1>
+  costo: {{unit.Cost}} <br>
+  hit speed: {{unit.Hit_Speed}}
+</div>
