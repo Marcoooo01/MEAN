@@ -13,6 +13,9 @@ var apiRouter = require('./routes/api');
 
 var app = express();
 
+var cors = require('cors');
+app.use(cors());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
