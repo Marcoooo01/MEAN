@@ -1,39 +1,33 @@
 <div class='container'>
 	<div class='row'>
-		<div class='col-sm'>
+		<div class='col-lg' style='text-align:center'>
 			<div *ngFor="let unit of data">
-				<ul>
-					<li style='font-size: 27px'><b><u><i>{{unit.Unit}}</i></u></b></li>
-				</ul>
+				<p style='font-size: 27px'><b><u><i>{{unit.Unit}}</i></u></b></p>
 				<img src="assets/img/{{unit.Unit}}.png">
-				<ul>
-					<li style='font-size: 27px'><b><i>Costo:</i> {{unit.Cost}}</b></li><br>
-					<li style='font-size: 27px'><b><i>Hit Speed:</i> {{unit.Hit_Speed}}</b></li>
-				</ul>
+				<p style='font-size: 27px'><b><i>Costo:</i> {{unit.Cost}}</b></p><br>
+				<p style='font-size: 27px'><b><i>Hit Speed:</i> {{unit.Hit_Speed}}</b></p>
 				<hr>
 			</div>
 		</div>
-		<div class='col-sm'>
+		<div class='col-lg' style='text-align:center'>
 			<form>
-				<ul>
-					<li style='font-size: 27px'><b><u><i>Add Unit</i></u></b></li>
-				</ul>
+				<p style='font-size: 27px'><b><u><i>Add Unit</i></u></b></p>
 				<div>
-					<p style='font-size: 18px; padding-left: 63px;'><b><u><i><label for="unit">Unit:</label></i></u></b></p>
+					<p style='font-size: 18px;'><b><u><i><label for="unit">Unit:</label></i></u></b></p>
 					<input name="unit" #newUnit>
         </div>
-        <br>
+				<br>
 				<div>
-					<p style='font-size: 18px; padding-left: 63px;'><b><u><i><label for="cost">Cost:</label></i></u></b></p>
+					<p style='font-size: 18px;'><b><u><i><label for="cost">Cost:</label></i></u></b></p>
 					<input name="cost" #newCost>
         </div>
-        <br>
+				<br>
 				<div>
-					<p style='font-size: 18px; padding-left: 48px;'><b><u><i><label for="hitspeed">Hit Speed:</label></i></u></b></p>
+					<p style='font-size: 18px;'><b><u><i><label for="hitspeed">Hit Speed:</label></i></u></b></p>
 					<input name="hit_speed" #newHitSpeed>
         </div>
-        <br>
-				<button style="margin-left: 30px;" (click)="addUnit(newUnit, newCost,newHitSpeed)"><b><i>Insert new unit</i></b></button>
+				<br>
+				<button (click)="addUnit(newUnit, newCost,newHitSpeed)"><b><i>Insert new unit</i></b></button>
 			</form>
 		</div>
 	</div>

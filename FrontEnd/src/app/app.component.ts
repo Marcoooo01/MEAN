@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit():void{
-    this.obsUnit = this.http.get<Unit[]>('https://3000-cf601d4b-d17d-4ffa-9cec-9773bcea6819.ws-eu01.gitpod.io/api');
+    this.obsUnit = this.http.get<Unit[]>('https://3000-cc56f660-f46c-4baf-b6c9-0afa70867cc9.ws-eu01.gitpod.io/api');
     this.obsUnit.subscribe((data: Unit[]) => {this.data = data;});
   }
 
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     newData.Cost = newCost.value;
     newData.Hit_Speed = newHitSpeed.value;
     let headers =  {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    this.postObserver = this.http.post('https://3000-cf601d4b-d17d-4ffa-9cec-9773bcea6819.ws-eu01.gitpod.io/api/add', JSON.stringify(newData),headers)
+    this.postObserver = this.http.post('https://3000-cc56f660-f46c-4baf-b6c9-0afa70867cc9.ws-eu01.gitpod.io/api/add', JSON.stringify(newData),headers)
     this.postObserver.subscribe(data => this.postData = data);
     return true;
   }
