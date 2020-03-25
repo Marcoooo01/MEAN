@@ -16,22 +16,28 @@ export class AppComponent implements OnInit {
   postObserver : Observable<Object>;
   postData : Object;
 
+  b: boolean = false;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit():void{
-    this.obsUnit = this.http.get<Unit[]>('https://3000-cc56f660-f46c-4baf-b6c9-0afa70867cc9.ws-eu01.gitpod.io/api');
+    this.listUnit();
+  }
+
+  listUnit(): void {
+    this.obsUnit = this.http.get<Unit[]>('https://3000-cdbd7f19-59b7-49e7-b513-1edddaf7951e.ws-eu01.gitpod.io/api');
     this.obsUnit.subscribe((data: Unit[]) => {this.data = data;});
   }
 
-  addUnit(newUnit: HTMLInputElement, newCost: HTMLInputElement, newHitSpeed: HTMLInputElement): boolean {
-    let newData: Unit = new Unit();
-    newData.Unit = newUnit.value;
-    newData.Cost = newCost.value;
-    newData.Hit_Speed = newHitSpeed.value;
+  addUnit(b, newUnit: HTMLInputElement, newCost: HTMLInputElement, newHitSpeed: HTMLInputElement, newSpeed: HTMLInputElement, newDeployTime: HTMLInputElement, newRange: HTMLInputElement, newTarget: HTMLInputElement, newCount: HTMLInputElement, newTransport: HTMLInputElement, newType: HTMLInputElement, newRarity: HTMLInputElement): boolean {
+    let newData = new Unit(newUnit.value, newCost.value, newHitSpeed.value, newSpeed.value, newDeployTime.value, newRange.value, newTarget.value, newCount.value, newTransport.value, newType.value, newRarity.value);
     let headers =  {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    this.postObserver = this.http.post('https://3000-cc56f660-f46c-4baf-b6c9-0afa70867cc9.ws-eu01.gitpod.io/api/add', JSON.stringify(newData),headers)
+    this.postObserver = this.http.post('https://3000-cdbd7f19-59b7-49e7-b513-1edddaf7951e.ws-eu01.gitpod.io/api/add', JSON.stringify(newData),headers)
     this.postObserver.subscribe(data => this.postData = data);
-    return true;
+    if (this.b == false){
+      this.b = true;
+    }
+    return false;
   }
 }
 

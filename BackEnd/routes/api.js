@@ -24,7 +24,7 @@ let executeQuery = function (res, query, next) {
         sql.close();
         return;
       }
-      res.send(result.recordset); //Il vettore con i dati è nel campo recordset (puoi loggare result per verificare)
+      res.send(result.recordset);
       sql.close();
     });
 
@@ -50,7 +50,6 @@ router.post('/add', function (req, res, next) {
   let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit,Cost,Hit_Speed) 
                      VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}')`;
   executeQuery(res, sqlInsert, next);
-  res.send({success:true, message: "unità inserita con successo", unit: unit})
 });
 
 module.exports = router;
