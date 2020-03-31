@@ -43,12 +43,12 @@ router.get('/search/:name', function (req, res, next) {
 
 router.post('/add', function (req, res, next) { 
   let unit = req.body;
-  if (!unit) {  
+  if (!unit.Unit || !unit.Cost || !unit.Hit_Speed || !unit.Speed || !unit.Deploy_Time || !unit.Range || !unit.Target || !unit.Count  || !unit.Transport || !unit.Type || !unit.Rarity) {  //Qui dovremmo testare tutti i campi della richiesta
     res.status(500).json({success: false, message:'Error while connecting database', error:err});
     return;
   }
-  let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit,Cost,Hit_Speed) 
-                     VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}')`;
+  let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes]
+                     VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}','${unit.Speed}','${unit.Deploy_Time}','${unit.Range}','${unit.Target}','${unit.Count}','${unit.Transport}','${unit.Type}','${unit.Rarity}')`;
   executeQuery(res, sqlInsert, next);
 });
 
